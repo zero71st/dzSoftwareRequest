@@ -1,20 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using dz.SoftwareRequest.Models;
 using dz.SoftwareRequest.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace dz.SoftwareRequest.Controllers
 {
-    public class HomeController : Controller
+    public class RequestController:Controller
     {
         public IActionResult Index()
         {
-                var requests = GetRequestBy("kasem");
-                return View(requests);;
+            var requests = GetRequestBy("kasem");
+            return View(requests);;
         }
 
         private IEnumerable<RequestViewModel> GetRequestBy(string requestBy)
@@ -29,31 +26,26 @@ namespace dz.SoftwareRequest.Controllers
             return requests.ToList();
         }
 
-        [HttpGet]
-        public IActionResult RequestNew()
+        [HttpPost]
+        public IActionResult Create()
         {
             var request = new RequestViewModel();
             request.DocNo = "2017/0001";
+            request.RequestDate = DateTime.Now;
             request.RequestBy = "Puchit.c";
-            return View(request);
-        }
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();  
+            return View(request);     
         }
 
-        public IActionResult Contact()
+        [HttpGet]
+        public IActionResult Update()
         {
-            ViewData["Message"] = "Your contact page.";
+            var requests = GetRequestBy("Kasem");
 
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var request = requests.FirstOrDefault();
+            request.DocNo = "2017/0001";
+            request.RequestDate = DateTime.Now;
+            request.RequestBy = "Puchit.c";
+            return View(request);     
         }
     }
 }

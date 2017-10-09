@@ -1,0 +1,11 @@
+@using dz.SoftwareRequest.ViewModels;
+@model RequestViewModel;
+@{
+    ViewData["Title"] = "New Request";
+}
+
+<h2>New Request</h2>
+<hr/>
+<form asp-action="Create" method="post">
+    @Html.Partial("_CreateOrUpdate.cshtml",Model)   
+</form>

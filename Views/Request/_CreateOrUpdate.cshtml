@@ -1,16 +1,7 @@
-@model dz.SoftwareRequest.ViewModels.RequestViewModel;
+@using dz.SoftwareRequest.ViewModels;
+@model RequestViewModel;
 
-@{
-    ViewData["Title"]= "Request Software";
-}
-
-<h2>New request</h2>
-<hr/>   
-<form asp-action="RequestNew">
-    <div>
-        <input type="submit" class="btn btn-primary" value="Send to approve"/>
-    </div>
-    <h4>Request Info</h4>
+<h4>Information</h4>
     <div class="form-horizontal">
         <div class="form-group">
             <label asp-for="DocNo" class="col-md-2 control-label"></label>
@@ -45,6 +36,4 @@
             <div class="col-md-2">
                 <input asp-for="RequestBy" readonly="readonly" class="form-control"/>
             </div>
-        </div>
-    </div>
-</form>
+        </div> 

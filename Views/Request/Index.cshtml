@@ -1,0 +1,35 @@
+@using dz.SoftwareRequest.ViewModels;
+@model IEnumerable<RequestViewModel>;
+
+@{
+    ViewData["Title"] = "Request List";
+}
+<h1>Request List</h1>
+
+<table class="table">
+    <thhead>
+        <tr>
+            <th>@Html.DisplayNameFor(model=> model.DocNo)</th>
+            <th>@Html.DisplayNameFor(model=> model.Title)</th>
+            <th>@Html.DisplayNameFor(model=> model.Description)</th>
+            <th>@Html.DisplayNameFor(model=> model.RequestBy)</th>
+            <th>@Html.DisplayNameFor(model=> model.ApprovedRequestBy)</th>
+            <td>@Html.DisplayNameFor(model=> model.Status)</td>
+    </thhead>
+    <tbody>
+        @foreach(var model  in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(p => model.DocNo)</td>
+                <td>@Html.DisplayFor(p => model.Title)</td>
+                <td>@Html.DisplayFor(p => model.Description)</td>
+                <td>@Html.DisplayFor(p => model.RequestBy)</td>
+                <td>@Html.DisplayFor(p => model.ApprovedRequestBy)</td>
+                <td>@Html.DisplayFor(p => model.Status)</td>
+                <td>
+                    <a asp-action="Update">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -8,3 +8,13 @@ c:\Users\Kasem.w\Documents\dotnetcore\dz.SoftwareRequest\obj\Debug\netcoreapp2.0
 c:\Users\Kasem.w\Documents\dotnetcore\dz.SoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.AssemblyInfo.cs
 c:\Users\Kasem.w\Documents\dotnetcore\dz.SoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.dll
 c:\Users\Kasem.w\Documents\dotnetcore\dz.SoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.pdb
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\bin\Debug\netcoreapp2.0\dz.SoftwareRequest.deps.json
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\bin\Debug\netcoreapp2.0\dz.SoftwareRequest.runtimeconfig.json
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\bin\Debug\netcoreapp2.0\dz.SoftwareRequest.runtimeconfig.dev.json
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\bin\Debug\netcoreapp2.0\dz.SoftwareRequest.dll
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\bin\Debug\netcoreapp2.0\dz.SoftwareRequest.pdb
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.csproj.CoreCompileInputs.cache
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.AssemblyInfoInputs.cache
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.AssemblyInfo.cs
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.dll
+d:\Profiles\Kasem.Wongsa\dotnetcore\dzSoftwareRequest\obj\Debug\netcoreapp2.0\dz.SoftwareRequest.pdb
