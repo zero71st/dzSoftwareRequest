@@ -1,31 +1,6 @@
 ﻿@model IEnumerable<dz.SoftwareRequest.ViewModels.RequestViewModel> 
 @{
-    ViewData["Title"] = "Request List";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h2>Request List</h2>
-
-<table class="table">
-    <thhead>
-        <tr>
-            <th>@Html.DisplayNameFor(model=> model.DocNo)</th>
-            <th>@Html.DisplayNameFor(model=> model.Title)</th>
-            <th>@Html.DisplayNameFor(model=> model.Description)</th>
-            <th>@Html.DisplayNameFor(model=> model.RequestBy)</th>
-            <th>@Html.DisplayNameFor(model=> model.ApprovedRequestBy)</th>
-            <td>@Html.DisplayNameFor(model=> model.Status)</td>
-    </thhead>
-    <tbody>
-        @foreach(var model  in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(p => model.DocNo)</td>
-                <td>@Html.DisplayFor(p => model.Title)</td>
-                <td>@Html.DisplayFor(p => model.Description)</td>
-                <td>@Html.DisplayFor(p => model.RequestBy)</td>
-                <td>@Html.DisplayFor(p => model.ApprovedRequestBy)</td>
-                <td>@Html.DisplayFor(p => model.Status)</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<h2>Dashboard</h2>

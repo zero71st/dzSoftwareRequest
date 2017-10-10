@@ -4,11 +4,10 @@
     ViewData["Title"] = "New Request";
 }
 
-<h4>New Request</h4>
+<h4>Approve <span>@Model.Title</span></h4>
 <hr/>
-<form asp-action="Create" method="post">
-    <input type="submit" class="btn btn-primary" value="Request Approve"/>
+<form asp-action="Approve" method="post">
+    <input type="submit" class="btn btn-primary" value="Approve"/>
     <hr/>
-    
     @Html.Partial("_CreateOrUpdate")
 </form>

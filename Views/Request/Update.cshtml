@@ -4,8 +4,11 @@
     ViewData["Title"]= "Edit Request";
 }
 
-<h2>Edit Request</h2>
+<h4>Edit  <span>@Model.Title</span></h4>
 <hr/>
 <form asp-action="Update">
+    <input type="submit" class="btn btn-primary" value="Save"/>
+    <hr/>
+
     @Html.Partial("_CreateOrUpdate");
 </form>

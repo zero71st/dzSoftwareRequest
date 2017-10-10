@@ -1,0 +1,201 @@
+@using dz.SoftwareRequest.ViewModels;
+@model RequestViewModel;
+
+
+<div class="form-horizontal">
+    <input type="hidden" asp-for="Id"/>
+    <hr/>
+    <div class="panel panel-success">
+        <div class="panel-heading">1) Analysis Design Coding and Unit testing</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="Development.ActionBy" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Development.ActionBy" class="form-control"></input>
+                </div>
+                <label asp-for="Development.StartDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Development.StartDate" class="form-control"></input>
+                </div>
+                <label asp-for="Development.FinishDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Development.FinishDate" class="form-control"></input>
+                </div>
+                <label asp-for="Development.Holiday" class="col-md-1 control-label"></label>
+                <div class="col-md-1">
+                    <input asp-for="Development.Holiday" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Development.AttrachFile" class="col-md-2 control-label"></label>
+                <div class="col-md-9">
+                    @Model.Development.AttrachFile
+                </div>
+                <div>
+                    <a class="col-md-1 btn btn-warning">...</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Development.Remark" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea rows="4" asp-for="Development.Remark" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">2) Security Testing</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="Security.ActionBy" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Security.ActionBy" class="form-control"></input>
+                </div>
+                <label asp-for="Security.StartDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Security.StartDate" class="form-control"></input>
+                </div>
+                <label asp-for="Security.FinishDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="Security.FinishDate" class="form-control"></input>
+                </div>
+                <label asp-for="Security.Holiday" class="col-md-1 control-label"></label>
+                <div class="col-md-1">
+                    <input asp-for="Security.Holiday" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Security.AttrachFile" class="col-md-2 control-label"></label>
+                <div class="col-md-9">
+                    @Model.Security.AttrachFile
+                </div>
+                <div>
+                    <a class="col-md-1 btn btn-warning">...</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Development.Remark" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea rows="4" asp-for="Development.Remark" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">3) Code Review</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="CodeReview.ActionBy" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="CodeReview.ActionBy" class="form-control"></input>
+                </div>
+                <label asp-for="Security.StartDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="CodeReview.StartDate" class="form-control"></input>
+                </div>
+                <label asp-for="CodeReview.FinishDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="CodeReview.FinishDate" class="form-control"></input>
+                </div>
+                <label asp-for="CodeReview.Holiday" class="col-md-1 control-label"></label>
+                <div class="col-md-1">
+                    <input asp-for="CodeReview.Holiday" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeReview.AttrachFile" class="col-md-2 control-label"></label>
+                <div class="col-md-9">
+                    @Model.CodeReview.AttrachFile
+                </div>
+                <div>
+                    <a class="col-md-1 btn btn-warning">...</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeReview.Remark" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea rows="4" asp-for="CodeReview.Remark" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">4) UAT</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label asp-for="UAT.ActionBy" class="col-md-2 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="UAT.ActionBy" class="form-control"></input>
+                </div>
+                <label asp-for="UAT.StartDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="UAT.StartDate" class="form-control"></input>
+                </div>
+                <label asp-for="UAT.FinishDate" class="col-md-1 control-label"></label>
+                <div class="col-md-2">
+                    <input asp-for="UAT.FinishDate" class="form-control"></input>
+                </div>
+                <label asp-for="UAT.Holiday" class="col-md-1 control-label"></label>
+                <div class="col-md-1">
+                    <input asp-for="UAT.Holiday" class="form-control"></input>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeReview.AttrachFile" class="col-md-2 control-label"></label>
+                <div class="col-md-9">
+                    @Model.CodeReview.AttrachFile
+                </div>
+                <div>
+                    <a class="col-md-1 btn btn-warning">...</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodeReview.Remark" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <textarea rows="4" asp-for="CodeReview.Remark" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success">
+      <div class="panel panel-heading">5) Setup and Deploy</div>
+      <div class="panel panel-body">
+        <div class="form-group">
+            <label asp-for="UAT.ActionBy" class="col-md-2 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="UAT.ActionBy" class="form-control"></input>
+            </div>
+            <label asp-for="UAT.StartDate" class="col-md-1 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="UAT.StartDate" class="form-control"></input>
+            </div>
+            <label asp-for="UAT.FinishDate" class="col-md-1 control-label"></label>
+            <div class="col-md-2">
+                <input asp-for="UAT.FinishDate" class="form-control"></input>
+            </div>
+            <label asp-for="UAT.Holiday" class="col-md-1 control-label"></label>
+            <div class="col-md-1">
+                <input asp-for="UAT.Holiday" class="form-control"></input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CodeReview.AttrachFile" class="col-md-2 control-label"></label>
+            <div class="col-md-9">
+                @Model.CodeReview.AttrachFile
+            </div>
+            <div>
+                <a class="col-md-1 btn btn-warning">...</a>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CodeReview.Remark" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea rows="4" asp-for="CodeReview.Remark" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+@using dz.SoftwareRequest.ViewModels;
+@model RequestViewModel;
+
+<h4>Development</h4>
+<hr/>
+<form asp-action="Update" method="post">
+    <input type="submit" class="btn btn-primary" value="Save"/>
+    <input type="submit" class="btn btn-primary" value="Close"/>
+    @Html.Partial("_CreateOrUpdate");
+</form>

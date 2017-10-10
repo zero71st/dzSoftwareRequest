@@ -9,16 +9,21 @@ namespace  dz.SoftwareRequest.ViewModels
     {
         public int Id { get; set; }
         [Required]
-        [DisplayName("Document No:")]
+        [DisplayName("Document No")]
         public string DocNo { get; set; }
-        [DisplayName("Request By:")]
+        [DisplayName("Request By")]
         public string RequestBy { get; set; }
-        [DisplayName("Title:")]
+        [DisplayName("Title")]
         public string Title { get; set; }
-        [DisplayName("Decription:")]
+        [DisplayName("Decription")]
         public string Description { get; set; }
+        [DisplayName("Request Date")]
         public DateTime RequestDate { get; set; }
-        public string ApprovedRequestBy { get; set; }
+        public string ApprovedBy { get; set; }
+        public DevelopTask Development {get;set;}
+        public DevelopTask CodeReview { get; set; }
+        public DevelopTask Security { get; set; }
+        public DevelopTask UAT { get; set; }
         public RequestStatus Status { get; set; } = RequestStatus.New;
     }
 }

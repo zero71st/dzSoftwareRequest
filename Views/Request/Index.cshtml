@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Request List";
 }
-<h1>Request List</h1>
+<h4>Request List</h4>
 
 <table class="table">
     <thhead>
@@ -13,21 +13,23 @@
             <th>@Html.DisplayNameFor(model=> model.Title)</th>
             <th>@Html.DisplayNameFor(model=> model.Description)</th>
             <th>@Html.DisplayNameFor(model=> model.RequestBy)</th>
-            <th>@Html.DisplayNameFor(model=> model.ApprovedRequestBy)</th>
+            <th>@Html.DisplayNameFor(model=> model.ApprovedBy)</th>
             <td>@Html.DisplayNameFor(model=> model.Status)</td>
     </thhead>
     <tbody>
-        @foreach(var model  in Model)
+        @foreach(var request in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(p => model.DocNo)</td>
-                <td>@Html.DisplayFor(p => model.Title)</td>
-                <td>@Html.DisplayFor(p => model.Description)</td>
-                <td>@Html.DisplayFor(p => model.RequestBy)</td>
-                <td>@Html.DisplayFor(p => model.ApprovedRequestBy)</td>
-                <td>@Html.DisplayFor(p => model.Status)</td>
+                <td>@Html.DisplayFor(p => request.DocNo)</td>
+                <td>@Html.DisplayFor(p => request.Title)</td>
+                <td>@Html.DisplayFor(p => request.Description)</td>
+                <td>@Html.DisplayFor(p => request.RequestBy)</td>
+                <td>@Html.DisplayFor(p => request.ApprovedBy)</td>
+                <td>@Html.DisplayFor(p => request.Status)</td>
                 <td>
-                    <a asp-action="Update">Edit</a>
+                    <a asp-action="Update" asp-route-id="@request.Id">Edit</a>
+                    <a asp-action="Approve" asp-route-id="@request.Id">Approve</a>
+                    <a asp-controller="Develop" asp-action="Update" asp-route-id="@request.Id">Develop</a>
                 </td>
             </tr>
         }
