@@ -13,8 +13,9 @@ namespace dz.SoftwareRequest.Controllers
     {
         public IActionResult Index()
         {
-                var requests = GetRequestBy("kasem");
-                return View(requests);;
+                // var requests = GetRequestBy("kasem");
+                // return View(requests);;
+                return RedirectToAction("Register","Account");
         }
 
         public static IEnumerable<RequestViewModel> GetRequestBy(string requestBy)

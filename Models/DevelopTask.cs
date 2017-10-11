@@ -4,6 +4,7 @@ namespace dz.SoftwareRequest.Models
 {
     public class DevelopTask
     {
+        public int Id { get; set; }
         public string ActionBy { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
