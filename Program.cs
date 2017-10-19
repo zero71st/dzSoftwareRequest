@@ -21,5 +21,6 @@ namespace dz.SoftwareRequest
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();
+        
     }
 }

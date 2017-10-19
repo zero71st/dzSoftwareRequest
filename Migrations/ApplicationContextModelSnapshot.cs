@@ -20,6 +20,20 @@ namespace dz.SoftwareRequest.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
+            modelBuilder.Entity("dz.SoftwareRequest.Models.ActionRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ActionBy");
+
+                    b.Property<DateTime>("ActionDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActionRole");
+                });
+
             modelBuilder.Entity("dz.SoftwareRequest.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -99,9 +113,9 @@ namespace dz.SoftwareRequest.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApprovedBy");
+                    b.Property<int?>("ApproveById");
 
-                    b.Property<string>("ApprovedProjectBy");
+                    b.Property<int?>("CloseProjectById");
 
                     b.Property<int?>("CodeReviewId");
 
@@ -118,9 +132,7 @@ namespace dz.SoftwareRequest.Migrations
 
                     b.Property<string>("MeetingRemark");
 
-                    b.Property<string>("RequestBy");
-
-                    b.Property<DateTime>("RequestDate");
+                    b.Property<int?>("RequestById");
 
                     b.Property<int?>("SecurityTestId");
 
@@ -132,11 +144,17 @@ namespace dz.SoftwareRequest.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApproveById");
+
+                    b.HasIndex("CloseProjectById");
+
                     b.HasIndex("CodeReviewId");
 
                     b.HasIndex("DeploymentId");
 
                     b.HasIndex("DevelopmentId");
+
+                    b.HasIndex("RequestById");
 
                     b.HasIndex("SecurityTestId");
 
@@ -254,6 +272,14 @@ namespace dz.SoftwareRequest.Migrations
 
             modelBuilder.Entity("dz.SoftwareRequest.Models.Request", b =>
                 {
+                    b.HasOne("dz.SoftwareRequest.Models.ActionRole", "ApproveBy")
+                        .WithMany()
+                        .HasForeignKey("ApproveById");
+
+                    b.HasOne("dz.SoftwareRequest.Models.ActionRole", "CloseProjectBy")
+                        .WithMany()
+                        .HasForeignKey("CloseProjectById");
+
                     b.HasOne("dz.SoftwareRequest.Models.DevelopTask", "CodeReview")
                         .WithMany()
                         .HasForeignKey("CodeReviewId");
@@ -265,6 +291,10 @@ namespace dz.SoftwareRequest.Migrations
                     b.HasOne("dz.SoftwareRequest.Models.DevelopTask", "Development")
                         .WithMany()
                         .HasForeignKey("DevelopmentId");
+
+                    b.HasOne("dz.SoftwareRequest.Models.ActionRole", "RequestBy")
+                        .WithMany()
+                        .HasForeignKey("RequestById");
 
                     b.HasOne("dz.SoftwareRequest.Models.DevelopTask", "SecurityTest")
                         .WithMany()

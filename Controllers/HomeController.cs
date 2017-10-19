@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dz.SoftwareRequest.Models;
 using dz.SoftwareRequest.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dz.SoftwareRequest.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
                 // var requests = GetRequestBy("kasem");
-                // return View(requests);;
+                // return View(requests);
                 return RedirectToAction("Register","Account");
         }
 

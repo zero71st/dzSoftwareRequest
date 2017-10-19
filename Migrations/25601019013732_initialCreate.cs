@@ -9,6 +9,20 @@ namespace dz.SoftwareRequest.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ActionRole",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ActionBy = table.Column<string>(type: "TEXT", nullable: true),
+                    ActionDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActionRole", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -45,6 +59,25 @@ namespace dz.SoftwareRequest.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DevelopTask",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ActionBy = table.Column<string>(type: "TEXT", nullable: true),
+                    AttrachFile = table.Column<string>(type: "TEXT", nullable: true),
+                    FinishDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    Holiday = table.Column<int>(type: "INTEGER", nullable: false),
+                    Manday = table.Column<int>(type: "INTEGER", nullable: false),
+                    Remark = table.Column<string>(type: "TEXT", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DevelopTask", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +186,80 @@ namespace dz.SoftwareRequest.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ApproveById = table.Column<int>(type: "INTEGER", nullable: true),
+                    CloseProjectById = table.Column<int>(type: "INTEGER", nullable: true),
+                    CodeReviewId = table.Column<int>(type: "INTEGER", nullable: true),
+                    DeploymentId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 5000, nullable: true),
+                    DevelopmentId = table.Column<int>(type: "INTEGER", nullable: true),
+                    DocNo = table.Column<string>(type: "TEXT", nullable: true),
+                    MeetingDate = table.Column<string>(type: "TEXT", nullable: true),
+                    MeetingRemark = table.Column<string>(type: "TEXT", nullable: true),
+                    RequestById = table.Column<int>(type: "INTEGER", nullable: true),
+                    SecurityTestId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    UATId = table.Column<int>(type: "INTEGER", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Requests_ActionRole_ApproveById",
+                        column: x => x.ApproveById,
+                        principalTable: "ActionRole",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_ActionRole_CloseProjectById",
+                        column: x => x.CloseProjectById,
+                        principalTable: "ActionRole",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_DevelopTask_CodeReviewId",
+                        column: x => x.CodeReviewId,
+                        principalTable: "DevelopTask",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_DevelopTask_DeploymentId",
+                        column: x => x.DeploymentId,
+                        principalTable: "DevelopTask",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_DevelopTask_DevelopmentId",
+                        column: x => x.DevelopmentId,
+                        principalTable: "DevelopTask",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_ActionRole_RequestById",
+                        column: x => x.RequestById,
+                        principalTable: "ActionRole",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_DevelopTask_SecurityTestId",
+                        column: x => x.SecurityTestId,
+                        principalTable: "DevelopTask",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Requests_DevelopTask_UATId",
+                        column: x => x.UATId,
+                        principalTable: "DevelopTask",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -189,6 +296,46 @@ namespace dz.SoftwareRequest.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_ApproveById",
+                table: "Requests",
+                column: "ApproveById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_CloseProjectById",
+                table: "Requests",
+                column: "CloseProjectById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_CodeReviewId",
+                table: "Requests",
+                column: "CodeReviewId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_DeploymentId",
+                table: "Requests",
+                column: "DeploymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_DevelopmentId",
+                table: "Requests",
+                column: "DevelopmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_RequestById",
+                table: "Requests",
+                column: "RequestById");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_SecurityTestId",
+                table: "Requests",
+                column: "SecurityTestId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_UATId",
+                table: "Requests",
+                column: "UATId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,10 +356,19 @@ namespace dz.SoftwareRequest.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Requests");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ActionRole");
+
+            migrationBuilder.DropTable(
+                name: "DevelopTask");
         }
     }
 }

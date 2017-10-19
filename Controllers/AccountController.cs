@@ -21,6 +21,31 @@ namespace dz.SoftwareRequest.Controllers
         }
         
         [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManger.PasswordSignInAsync(model.Email,model.Password,false,lockoutOnFailure:false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index","Request");
+                }
+                else
+                {
+                    ModelState.AddModelError(String.Empty,"Invalid username or password");
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();

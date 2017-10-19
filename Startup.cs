@@ -32,6 +32,11 @@ namespace dz.SoftwareRequest
                     .AddEntityFrameworkStores<ApplicationContext>()
                     .AddDefaultTokenProviders();
             
+            services.ConfigureApplicationCookie(options =>
+                {
+                     options.LoginPath = "/Account/Login";
+                });
+
             services.AddMvc();
         }
 
