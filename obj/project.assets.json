@@ -12539,11 +12539,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\dz.SoftwareRequest.csproj",
+      "projectUniqueName": "C:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\dz.SoftwareRequest.csproj",
       "projectName": "dz.SoftwareRequest",
-      "projectPath": "c:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\dz.SoftwareRequest.csproj",
+      "projectPath": "C:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\dz.SoftwareRequest.csproj",
       "packagesPath": "C:\\Users\\kasem.w\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\obj\\",
+      "outputPath": "C:\\Users\\kasem.w\\Documents\\dotnetcore\\dz.SoftwareRequest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

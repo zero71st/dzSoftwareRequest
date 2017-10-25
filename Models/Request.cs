@@ -35,5 +35,13 @@ namespace dz.SoftwareRequest.Models
             Description = description;
             RequestBy = requestBy;
         }
+
+        public void Approve(string approvedBy)
+        {
+            ApproveBy = new ActionRole();
+            ApproveBy.ActionBy = approvedBy;
+            ApproveBy.ActionDate = DateTime.Now;
+            Status = RequestStatus.Approved;
+        }
     }
 }

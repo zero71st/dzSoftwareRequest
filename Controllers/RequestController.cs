@@ -86,6 +86,7 @@ namespace dz.SoftwareRequest.Controllers
                         }
                     );
                     CreateRequestAsync(request);
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateException e)
                 {
@@ -150,8 +151,35 @@ namespace dz.SoftwareRequest.Controllers
         [HttpGet]
         public IActionResult Approve(int id)
         {
-            var model = GetRequestById(id);
+            var request = GetRequestById(id);
+            var model = new RequestViewModel();
+            model.Id = request.Id;
+            model.DocNo = request.DocNo;
+            model.Title = request.Title;
+            model.Description = request.Description;
+            model.RequestBy = request.RequestBy.ActionBy;
+            model.RequestDate = request.RequestBy.ActionDate;
+
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Approve(int id,RequestViewModel model)
+        {
+            
+            try
+            {
+                var request = GetRequestById(id);
+                request.Approve(User.Identity.Name);
+                _db.Update(request);
+                _db.SaveChanges();
+            }
+            catch (System.Exception e)
+            {
+                ModelState.AddModelError("",e.Message);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

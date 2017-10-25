@@ -1,14 +1,17 @@
 @using dz.SoftwareRequest.ViewModels;
 @model RequestViewModel;
 @{
-    ViewData["Title"] = "New Request";
+    ViewData["Title"] = "Approve Request";
 }
 
-<h4>Approve <span>@Model.Title</span></h4>
+<h4>Approve - <span>@Model.Title</span></h4>
 <hr/>
+<a>Approve</a>
+   
 <form asp-action="Approve" method="post">
-    <input type="submit" class="btn btn-primary" value="Approve"/>
-    <input type="submit" class="btn btn-danger" value="Reject"/>
     <hr/>
+     <input type="submit" class="btn btn-danger">Approve</input>
+     <a asp-action="Reject" asp-controller="Request" class="btn btn-danger">Reject</a>
+     <a asp-action="Index" asp-controller="Request" class="btn btn-default">Close</a>
     @Html.Partial("_CreateOrUpdate")
 </form>
