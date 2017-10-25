@@ -40,64 +40,59 @@ namespace dz.SoftwareRequest.Controllers
                         .ToListAsync();
         }
 
-        public static IEnumerable<RequestViewModel> GetRequestBy(string requestBy)
+        private string GetNextDocNo()
         {
-            //  DevelopTask development = new DevelopTask {ActionBy = "Kasem", StartDate = DateTime.Now,FinishDate = DateTime.Now,Remark = "Remark bay programmmer",AttrachFile=@"\dzdata\xxx.pff"};
-            //  DevelopTask review = new DevelopTask {ActionBy = "Jakkapan", StartDate = DateTime.Now,FinishDate = DateTime.Now,Remark = "Remark bay programmmer",AttrachFile=@"\dzdata\xxx.pff"};
-            //  DevelopTask uat = new DevelopTask {ActionBy = "Puchit.c", StartDate = DateTime.Now,FinishDate = DateTime.Now,Remark = "Remark bay programmmer",AttrachFile=@"\dzdata\xxx.pff"};
-            //  DevelopTask security = new DevelopTask {ActionBy = "Puchit.c", StartDate = DateTime.Now,FinishDate = DateTime.Now,Remark = "Remark bay programmmer",AttrachFile=@"\dzdata\xxx.pff"};
-            
-            // var requests = new List<RequestViewModel>
-            // {
-            //     new RequestViewModel {Id=1,DocNo = "2017/0001",Development = development,CodeReview = review,Security=security,UAT = uat,RequestBy= "Puchit.c",Title="Request Software A",Description = "1.aa 2.bb 3.cc",RequestDate = DateTime.Today,ApprovedBy="Prajin.t"},
-            //     new RequestViewModel {Id=2,DocNo = "2017/0002",Development = development,CodeReview = review,Security=security,UAT = uat,RequestBy= "Benjawan.c",Title="Request Software B", Description = "1.cc 3.cc 4.dd",RequestDate = DateTime.Today,ApprovedBy="Prajin.t"},
-            //     new RequestViewModel {Id=3,DocNo = "2017/0003",Development = development,CodeReview = review,Security=security,UAT = uat,RequestBy= ".c",Title="Update Software C",Description="Add genereate small barcode",RequestDate = DateTime.Today},
-            // };
-
-            return null;
+            var request = _db.Requests.OrderByDescending(r=> r.Id).FirstOrDefault();
+            string prefix = request.DocNo.Substring(0,5);
+            int no = int.Parse(request.DocNo.Substring(5,4));
+            return prefix+(no+1).ToString("0000");
         }
 
-        public static RequestViewModel GetRequestBy(int Id)
+        private Request GetRequestById(int id)
         {
-            var requests = GetRequestBy("Kasem");
-            var request = requests.FirstOrDefault(r=> r.Id==Id);
+            var request = _db.Requests
+                      .Include("RequestBy")
+                      .FirstOrDefault(r=> r.Id == id);
             return request;
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            var request = new RequestViewModel();
-            request.DocNo = "2017/0001";
-            request.RequestDate = DateTime.Now;
-            request.RequestBy = User.Identity.Name;
-            return View(request);
+            var model = new RequestViewModel();
+            model.DocNo = GetNextDocNo();
+            model.RequestDate = DateTime.Now;
+            model.RequestBy = User.Identity.Name;
+
+            return View(model);
         }
         
         [HttpPost]
-        public IActionResult Create([Bind("DocNo,Title,Description")] RequestViewModel request)
+        public IActionResult Create([Bind("DocNo,Title,Description,RequestBy")] RequestViewModel model)
         {
-           try
-           {
-                Request newRequest = new Request
-                ( 
-                    request.DocNo,
-                    request.Title,
-                    request.Description,
-                    new ActionRole
-                    {
-                      ActionBy = User.Identity.Name,
-                      ActionDate = DateTime.Now
-                    }
-                );
-
-                CreateRequestAsync(newRequest);
-           }catch
-           {
-               return NotFound();
-           }
-           
-           return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var request = new Request
+                    (
+                        model.DocNo,
+                        model.Title,
+                        model.Description,
+                        new ActionRole
+                        {
+                            ActionBy = User.Identity.Name,
+                            ActionDate =  DateTime.Now
+                        }
+                    );
+                    CreateRequestAsync(request);
+                }
+                catch (DbUpdateException e)
+                {
+                    ModelState.AddModelError("", e.Message);
+                }
+            }
+            return View(model);
         }
 
         private async void CreateRequestAsync(Request request)
@@ -109,18 +104,54 @@ namespace dz.SoftwareRequest.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var request = GetRequestBy(id);
-            request.DocNo = "2017/0001";
-            request.RequestDate = DateTime.Now;
-            request.RequestBy = "Puchit.c";
-            return View(request);
+            var request = GetRequestById(id);
+
+            var model = new RequestViewModel
+            {
+                Id = request.Id,
+                DocNo = request.DocNo,
+                RequestBy = request.RequestBy.ActionBy,
+                RequestDate = request.RequestBy.ActionDate,
+                Title = request.Title,
+                Description = request.Description,
+                ApprovedBy = request.ApproveBy != null ? request.ApproveBy.ActionBy : ""
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Update(int id,[Bind("Id,DocNo,Title,Description")] RequestViewModel model)
+        {        
+            var request = GetRequestById(id);
+            if (request == null)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                   request.Title = model.Title;
+                   request.Description = model.Description;      
+                   _db.Update(request);
+                   _db.SaveChanges();
+
+                   return RedirectToAction("Index","Request");
+
+                }catch (DbUpdateException e)
+                {
+                    ModelState.AddModelError("",e.Message);
+                }
+            }
+
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Approve(int id)
         {
-            var request = GetRequestBy(id);
-            return View(request);
+            var model = GetRequestById(id);
+            return View(model);
         }
     }
 }

@@ -13,12 +13,14 @@ namespace  dz.SoftwareRequest.ViewModels
         public string DocNo { get; set; }
         [DisplayName("Request By")]
         public string RequestBy { get; set; }
+        [Required]
         [DisplayName("Title")]
         public string Title { get; set; }
+        [Required]
         [DisplayName("Decription")]
         public string Description { get; set; }
         [DisplayName("Request Date")]
-        public DateTime RequestDate { get; set; }
+        public DateTime? RequestDate { get; set; }
         public string ApprovedBy { get; set; }
         public DevelopTask Development {get;set;}
         public DevelopTask CodeReview { get; set; }
