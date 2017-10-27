@@ -37,6 +37,7 @@ namespace dz.SoftwareRequest.Controllers
         {
             return await _db.Requests
                         .Include("RequestBy")
+                        .Include("ApproveBy")
                         .ToListAsync();
         }
 
@@ -52,6 +53,7 @@ namespace dz.SoftwareRequest.Controllers
         {
             var request = _db.Requests
                       .Include("RequestBy")
+                      .Include("ApproveBy")
                       .FirstOrDefault(r=> r.Id == id);
             return request;
         }
@@ -159,6 +161,8 @@ namespace dz.SoftwareRequest.Controllers
             model.Description = request.Description;
             model.RequestBy = request.RequestBy.ActionBy;
             model.RequestDate = request.RequestBy.ActionDate;
+            model.ApprovedBy = request.ApproveBy != null ? request.ApproveBy.ActionBy : "";
+            model.ApprovedDate = request.ApproveBy != null ? request.ApproveBy.ActionDate : DateTime.Now;
 
             return View(model);
         }
@@ -166,7 +170,6 @@ namespace dz.SoftwareRequest.Controllers
         [HttpPost]
         public IActionResult Approve(int id,RequestViewModel model)
         {
-            
             try
             {
                 var request = GetRequestById(id);
